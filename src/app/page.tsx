@@ -9,8 +9,10 @@ import Typography from '@mui/material/Typography';
 import MenuIcon from '@mui/icons-material/Menu';
 import { MenuItem, Button, Fade, Menu, LinearProgress } from '@mui/material';
 import { anecdote } from './anecdote';
+import { useRouter } from 'next/navigation';
 
 export default function HomeScreen() {
+  const router = useRouter();
   const [accountAnchorEl, setAccountAnchorEl] = useState<null | HTMLElement>(null);
   const [selectedWeek, setSelectedWeek] = useState<number | null>(null);
 
@@ -21,6 +23,10 @@ export default function HomeScreen() {
   const handleCloseMenu = () => {
     setAccountAnchorEl(null);
   };
+
+  const handleLogout =() => {
+    router.push('/login');
+  }
 
   // Get current date
   const currentDate = new Date().toLocaleDateString('fr-FR', {
@@ -61,7 +67,7 @@ export default function HomeScreen() {
           Profile
         </MenuItem>
         <Divider />
-        <MenuItem onClick={handleCloseMenu}>Logout</MenuItem>
+        <MenuItem onClick={handleLogout}>Logout</MenuItem>
         <MenuItem onClick={handleCloseMenu}>Boutique</MenuItem>
         <MenuItem onClick={handleCloseMenu}>Synchroniser</MenuItem>
         <MenuItem onClick={handleCloseMenu}>Notifications</MenuItem>
